@@ -1,5 +1,8 @@
 {
   "name": "emi-calculator",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }
