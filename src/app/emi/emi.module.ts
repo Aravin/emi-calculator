@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmiPage } from './emi.page';
-import {  } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   imports: [
@@ -12,6 +14,7 @@ import {  } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
     RouterModule.forChild([{ path: '', component: EmiPage }])
   ],
   declarations: [EmiPage]
