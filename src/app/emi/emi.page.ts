@@ -22,6 +22,7 @@ export class EmiPage implements OnInit {
   emi = 0;
   totalEmi = 0;
   totalInterest = 0;
+  showDetails = false;
 
   emiSchedule: EmiSchedule[] = [];
 
@@ -86,6 +87,8 @@ export class EmiPage implements OnInit {
 
     this.totalEmi = parseFloat((this.emi * yn).toFixed(2));
     this.totalInterest = parseFloat((this.totalEmi - P).toFixed(2));
+
+    this.showDetails = true;
   }
 
 }

@@ -41,83 +41,85 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card id="breakup">
-    <ion-card-header>
-      <ion-card-subtitle>Your EMI Calculations</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <!-- EMI Calculator -->
-      <ion-chip color="primary">
-        <ion-label >Total Monthly EMI is {{ emi }}</ion-label>
-      </ion-chip>
-      <ion-chip color="warning">
-        <ion-label >Total EMI is {{ totalEmi  }}</ion-label>
-      </ion-chip>
-      <ion-chip color="danger">
-        <ion-label >Total Interest is {{ this.totalInterest }}</ion-label>
-      </ion-chip>
-    
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="showDetails">
+    <ion-card id="breakup">
+      <ion-card-header>
+        <ion-card-subtitle>Your EMI Calculations</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- EMI Calculator -->
+        <ion-chip color="primary">
+          <ion-label>Total Monthly EMI is {{ emi }}</ion-label>
+        </ion-chip>
+        <ion-chip color="warning">
+          <ion-label>Total EMI is {{ totalEmi  }}</ion-label>
+        </ion-chip>
+        <ion-chip color="danger">
+          <ion-label>Total Interest is {{ this.totalInterest }}</ion-label>
+        </ion-chip>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>
-        Payment Breakup
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content class="schedule-content">
-      <table mat-table [dataSource]="emiSchedule"  class="mat-elevation-z8"> 
+      </ion-card-content>
+    </ion-card>
 
-        <!--- Note that these columns can be defined in any order.
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>
+          Payment Breakup
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content class="schedule-content">
+        <table mat-table [dataSource]="emiSchedule" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="sno">
-          <th mat-header-cell *matHeaderCellDef> # </th>
-          <td mat-cell *matCellDef="let element; let i = index;" >
-            <ion-text>
-              {{ i + 1  }} 
-            </ion-text>
-          </td>
-        </ng-container>
+          <!-- Position Column -->
+          <ng-container matColumnDef="sno">
+            <th mat-header-cell *matHeaderCellDef> # </th>
+            <td mat-cell *matCellDef="let element; let i = index;">
+              <ion-text>
+                {{ i + 1  }}
+              </ion-text>
+            </td>
+          </ng-container>
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="principal">
-          <th mat-header-cell *matHeaderCellDef> Principal </th>
-          <td mat-cell *matCellDef="let element" >
-            <ion-text color="primary">
-              {{element.principal}} 
-            </ion-text>
-          </td>
-        </ng-container>
+          <!-- Position Column -->
+          <ng-container matColumnDef="principal">
+            <th mat-header-cell *matHeaderCellDef> Principal </th>
+            <td mat-cell *matCellDef="let element">
+              <ion-text color="primary">
+                {{element.principal}}
+              </ion-text>
+            </td>
+          </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="interest">
-          <th mat-header-cell *matHeaderCellDef> Interest </th>
-          <td mat-cell *matCellDef="let element" color="danger">
-            <ion-text  color="danger">
-              {{element.interest}}
-            </ion-text>
-          </td>
-        </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="interest">
+            <th mat-header-cell *matHeaderCellDef> Interest </th>
+            <td mat-cell *matCellDef="let element" color="danger">
+              <ion-text color="danger">
+                {{element.interest}}
+              </ion-text>
+            </td>
+          </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="endingBalance">
-          <th mat-header-cell *matHeaderCellDef> Balance </th>
-          <td mat-cell *matCellDef="let element"> {{element.endingBalance}} </td>
-        </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="endingBalance">
+            <th mat-header-cell *matHeaderCellDef> Balance </th>
+            <td mat-cell *matCellDef="let element"> {{element.endingBalance}} </td>
+          </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="percentagePaid">
-          <th mat-header-cell *matHeaderCellDef> Paid (%) </th>
-          <td mat-cell *matCellDef="let element"> {{element.percentagePaid}} </td>
-        </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="percentagePaid">
+            <th mat-header-cell *matHeaderCellDef> Paid (%) </th>
+            <td mat-cell *matCellDef="let element"> {{element.percentagePaid}} </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    
-    </ion-card-content>
-  </ion-card>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
