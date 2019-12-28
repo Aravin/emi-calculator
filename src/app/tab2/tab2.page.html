@@ -1,11 +1,63 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="tertiary">
     <ion-title>
-      Other Applications
+      Secured Loan (Simple Interest)
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Calculate the Interest</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="emiForm" (ngSubmit)="calculateEmi()">
+        <!-- Loan Amount -->
+        <ion-item>
+          <ion-label position="floating">Loan Amount* (in INR)</ion-label>
+          <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount" placeholder="0 - 999999999"></ion-input>
+        </ion-item>
+
+        <!-- Rate of Interest -->
+        <ion-item>
+          <ion-label position="floating">Interest Rate* (in %)</ion-label>
+          <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="interest" placeholder="1-100">
+          </ion-input>
+        </ion-item>
+
+        <!-- Submit Button -->
+        <ion-button [disabled]="emiForm.invalid" type="submit" color="tertiary" expand="full">Calculate</ion-button>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>About Secured Loans</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      A secured loan is a loan in which the borrower pledges some asset (e.g. a gold, a car or property) as collateral for the loan, which then becomes a secured debt owed to the creditor who gives the loan.
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="showDetails">
+    <ion-card id="breakup">
+      <ion-card-header>
+        <ion-card-subtitle>Your EMI Calculations</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- EMI Calculator -->
+        <ion-chip color="danger">
+          <ion-label class="text-highlight">Total Interest is {{ this.totalInterest | currency: 'INR' }} per month.</ion-label>
+        </ion-chip>
+
+      </ion-card-content>
+    </ion-card>
+
+
+
+  </div>
 </ion-content>

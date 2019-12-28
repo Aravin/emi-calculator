@@ -16,21 +16,21 @@
       <form [formGroup]="emiForm" (ngSubmit)="calculateEmi()">
         <!-- Loan Amount -->
         <ion-item>
-          <ion-label position="floating">Loan Amount* </ion-label>
-          <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount"></ion-input>
+          <ion-label position="floating">Loan Amount* (in INR)</ion-label>
+          <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount" placeholder="0 - 999999999"></ion-input>
         </ion-item>
 
         <!-- Rate of Interest -->
         <ion-item>
-          <ion-label position="floating">Interest Rate* </ion-label>
-          <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="interest">
+          <ion-label position="floating">Interest Rate* (in %)</ion-label>
+          <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="interest" placeholder="1-100">
           </ion-input>
         </ion-item>
 
         <!-- No. of Year -->
         <ion-item>
-          <ion-label position="floating">Loan Tenure* in Years </ion-label>
-          <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="tenure">
+          <ion-label position="floating">Loan Tenure* (in Years) </ion-label>
+          <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="tenure" placeholder="1-100">
           </ion-input>
         </ion-item>
 
@@ -49,13 +49,13 @@
       <ion-card-content>
         <!-- EMI Calculator -->
         <ion-chip color="primary">
-          <ion-label>Total Monthly EMI is {{ emi }}</ion-label>
+          <ion-label class="text-highlight">Total Monthly EMI is {{ emi | currency: 'INR'}}</ion-label>
         </ion-chip>
         <ion-chip color="warning">
-          <ion-label>Total EMI is {{ totalEmi  }}</ion-label>
+          <ion-label class="text-highlight">Total EMI is {{ totalEmi | currency: 'INR'}}</ion-label>
         </ion-chip>
         <ion-chip color="danger">
-          <ion-label>Total Interest is {{ this.totalInterest }}</ion-label>
+          <ion-label class="text-highlight">Total Interest is {{ this.totalInterest | currency: 'INR'}}</ion-label>
         </ion-chip>
 
       </ion-card-content>

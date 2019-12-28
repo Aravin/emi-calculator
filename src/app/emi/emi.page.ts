@@ -32,9 +32,9 @@ export class EmiPage implements OnInit {
 
   ngOnInit() {
     this.emiForm = this.formBuilder.group({
-      loanAmount: ['95000', [Validators.required, Validators.min(1), Validators.max(999999999)]],
-      interest: ['12.5', [Validators.required, Validators.min(1), Validators.max(100)]],
-      tenure: ['2', [Validators.required, Validators.min(1), Validators.max(100)]],
+      loanAmount: ['', [Validators.required, Validators.min(1), Validators.max(999999999)]],
+      interest: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
+      tenure: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
     });
   }
 
