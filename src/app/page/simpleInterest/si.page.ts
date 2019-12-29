@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StorageService } from 'src/app/services/storage.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -14,8 +16,17 @@ export class Tab2Page implements OnInit {
   totalEmi = 0;
   totalInterest = 0;
   showDetails = false;
+  currencyCode: string;
+  currencySymbol: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private storageService: StorageService,
+    private platform: Platform) {
+      this.platform.ready().then(() => {
+        this.getSettings();
+      });
+    }
 
   ngOnInit() {
     this.emiForm = this.formBuilder.group({
@@ -37,6 +48,16 @@ export class Tab2Page implements OnInit {
     this.totalInterest = parseFloat((P * r / 100).toFixed(2));
 
     this.showDetails = true;
+  }
+
+  getSettings() {
+    this.storageService.getLocation().code.then(val => {
+      console.log(val)
+      this.currencyCode = val;
+    });
+    this.storageService.getLocation().symbol.then(val => {
+      this.currencySymbol = val;
+    });
   }
 
 }

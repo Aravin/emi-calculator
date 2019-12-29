@@ -19,7 +19,7 @@
       <form [formGroup]="emiForm" (ngSubmit)="calculateEmi()">
         <!-- Loan Amount -->
         <ion-item>
-          <ion-label position="floating">Loan Amount* (in INR)</ion-label>
+          <ion-label position="floating">Loan Amount* ({{ currencySymbol }})</ion-label>
           <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount" placeholder="0 - 999999999"></ion-input>
         </ion-item>
 
@@ -52,13 +52,13 @@
       <ion-card-content>
         <!-- EMI Calculator -->
         <ion-chip color="primary">
-          <ion-label class="text-highlight">Total Monthly EMI is {{ emi | currency: 'INR'}}</ion-label>
+        <ion-label class="text-highlight">Total Monthly EMI is {{ emi | currency: currencyCode}}</ion-label>
         </ion-chip>
         <ion-chip color="warning">
-          <ion-label class="text-highlight">Total EMI is {{ totalEmi | currency: 'INR'}}</ion-label>
+          <ion-label class="text-highlight">Total EMI is {{ totalEmi | currency: currencyCode }}</ion-label>
         </ion-chip>
         <ion-chip color="danger">
-          <ion-label class="text-highlight">Total Interest is {{ this.totalInterest | currency: 'INR'}}</ion-label>
+          <ion-label class="text-highlight">Total Interest is {{ this.totalInterest | currency: currencyCode }}</ion-label>
         </ion-chip>
 
       </ion-card-content>
@@ -76,7 +76,7 @@
           <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
-          <!-- Position Column -->
+          <!-- sno Column -->
           <ng-container matColumnDef="sno">
             <th mat-header-cell *matHeaderCellDef> # </th>
             <td mat-cell *matCellDef="let element; let i = index;">
@@ -86,9 +86,9 @@
             </td>
           </ng-container>
 
-          <!-- Position Column -->
+          <!-- principal Column -->
           <ng-container matColumnDef="principal">
-            <th mat-header-cell *matHeaderCellDef> Principal </th>
+            <th mat-header-cell *matHeaderCellDef> Principal ({{ currencySymbol }}) </th>
             <td mat-cell *matCellDef="let element">
               <ion-text color="primary">
                 {{element.principal}}
@@ -96,9 +96,9 @@
             </td>
           </ng-container>
 
-          <!-- Name Column -->
+          <!-- interest Column -->
           <ng-container matColumnDef="interest">
-            <th mat-header-cell *matHeaderCellDef> Interest </th>
+            <th mat-header-cell *matHeaderCellDef> Interest ({{ currencySymbol }})</th>
             <td mat-cell *matCellDef="let element" color="danger">
               <ion-text color="danger">
                 {{element.interest}}
@@ -106,13 +106,13 @@
             </td>
           </ng-container>
 
-          <!-- Symbol Column -->
+          <!-- endingBalance Column -->
           <ng-container matColumnDef="endingBalance">
-            <th mat-header-cell *matHeaderCellDef> Balance </th>
+            <th mat-header-cell *matHeaderCellDef> Balance ({{ currencySymbol }})</th>
             <td mat-cell *matCellDef="let element"> {{element.endingBalance}} </td>
           </ng-container>
 
-          <!-- Symbol Column -->
+          <!-- percentagePaid Column -->
           <ng-container matColumnDef="percentagePaid">
             <th mat-header-cell *matHeaderCellDef> Paid (%) </th>
             <td mat-cell *matCellDef="let element"> {{element.percentagePaid}} </td>

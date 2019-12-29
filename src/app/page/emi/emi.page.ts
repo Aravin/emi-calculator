@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StorageService } from 'src/app/services/storage.service';
+import { Platform } from '@ionic/angular';
 
 interface EmiSchedule {
   startingBalance: number;
@@ -23,10 +25,20 @@ export class EmiPage implements OnInit {
   totalEmi = 0;
   totalInterest = 0;
   showDetails = false;
+  currencyCode: string;
+  currencySymbol: string;
 
   emiSchedule: EmiSchedule[] = [];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private storageService: StorageService,
+    private platform: Platform
+    ) {
+      this.platform.ready().then(() => {
+        this.getSettings();
+      });
+    }
 
   displayedColumns: string[] = ['sno', 'principal', 'interest', 'endingBalance', 'percentagePaid'];
 
@@ -89,6 +101,15 @@ export class EmiPage implements OnInit {
     this.totalInterest = parseFloat((this.totalEmi - P).toFixed(2));
 
     this.showDetails = true;
+  }
+
+  getSettings() {
+    this.storageService.getLocation().code.then(val => {
+      this.currencyCode = val;
+    });
+    this.storageService.getLocation().symbol.then(val => {
+      this.currencySymbol = val;
+    });
   }
 
 }

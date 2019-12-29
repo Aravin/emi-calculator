@@ -20,7 +20,7 @@ export class StorageService {
   //     });
 
   //   const location = Promise.resolve(promise);
-    
+
   //   if (!location) {
   //     this.router.navigate(['/settings']);
   //   }
@@ -28,11 +28,16 @@ export class StorageService {
   //   return location;
   // }
 
-  setLocation(location: string): void {
-    this.storage.set('location', location);
+  setCurrency(location: any): void {
+    console.log(location)
+    this.storage.set('symbol', location.symbol_native);
+    this.storage.set('code', location.code);
   }
 
-  getLocation(): Promise<string> {
-    return this.storage.get('location');
+  getLocation() {
+    return {
+      code: this.storage.get('code'),
+      symbol: this.storage.get('symbol')
+    };
   }
 }
