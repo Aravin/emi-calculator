@@ -13,7 +13,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../emi/emi.module').then(m => m.EmiPageModule)
+              import('../page/emi/emi.module').then(m => m.EmiPageModule)
           }
         ]
       },
@@ -23,7 +23,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../page/simpleInterest/si.module').then(m => m.Tab2PageModule)
           }
         ]
       },
@@ -33,7 +33,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../page/about/about.module').then(m => m.Tab3PageModule)
           }
         ]
       },

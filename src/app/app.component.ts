@@ -10,6 +10,30 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  public appPages = [
+    {
+      title: 'EMI Calculation',
+      url: '/tabs/tab1',
+      icon: 'calculator'
+    },
+    {
+      title: 'SI Calculation',
+      url: '/tabs/tab2',
+      icon: 'lock'
+    },
+    {
+      title: 'Settings',
+      url: '/settings',
+      icon: 'settings'
+    },
+    {
+      title: 'About Us',
+      url: '/tabs/tab3',
+      icon: 'information'
+    }
+  ];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
