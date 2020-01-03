@@ -16,17 +16,17 @@ export class Tab2Page implements OnInit {
   totalEmi = 0;
   totalInterest = 0;
   showDetails = false;
-  currencyCode: string;
-  currencySymbol: string;
+  currencyCode = 'INR';
+  currencySymbol = '₹';
 
   constructor(
     private formBuilder: FormBuilder,
     private storageService: StorageService,
     private platform: Platform) {
-      this.platform.ready().then(() => {
-        this.getSettings();
-      });
-    }
+    this.platform.ready().then(() => {
+      this.getSettings();
+    });
+  }
 
   ngOnInit() {
     this.emiForm = this.formBuilder.group({
@@ -52,11 +52,14 @@ export class Tab2Page implements OnInit {
 
   getSettings() {
     this.storageService.getLocation().code.then(val => {
-      console.log(val)
-      this.currencyCode = val;
+      if (val) {
+        this.currencyCode = val;
+      }
     });
     this.storageService.getLocation().symbol.then(val => {
-      this.currencySymbol = val;
+      if (val) {
+        this.currencySymbol = val;
+      }
     });
   }
 

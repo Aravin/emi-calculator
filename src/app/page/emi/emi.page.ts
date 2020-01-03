@@ -25,8 +25,8 @@ export class EmiPage implements OnInit {
   totalEmi = 0;
   totalInterest = 0;
   showDetails = false;
-  currencyCode: string;
-  currencySymbol: string;
+  currencyCode = 'INR';
+  currencySymbol = '₹';
 
   emiSchedule: EmiSchedule[] = [];
 
@@ -34,11 +34,11 @@ export class EmiPage implements OnInit {
     private formBuilder: FormBuilder,
     private storageService: StorageService,
     private platform: Platform
-    ) {
-      this.platform.ready().then(() => {
-        this.getSettings();
-      });
-    }
+  ) {
+    this.platform.ready().then(() => {
+      this.getSettings();
+    });
+  }
 
   displayedColumns: string[] = ['sno', 'principal', 'interest', 'endingBalance', 'percentagePaid'];
 
@@ -70,14 +70,14 @@ export class EmiPage implements OnInit {
     let pp = 0;
     let tpp = 0;
 
-    this.emi = parseFloat((p * yr * (Math.pow(1 + yr, yn)) /  (Math.pow(1 + yr, yn) - 1)).toFixed(2));
+    this.emi = parseFloat((p * yr * (Math.pow(1 + yr, yn)) / (Math.pow(1 + yr, yn) - 1)).toFixed(2));
 
     // for month wise calculation
-    for ( let i = yn ; i >= 1; i --) {
+    for (let i = yn; i >= 1; i--) {
 
       const ci = (p * r) / (100 * 12);
       const fci = parseFloat(ci.toFixed(2));
-      const cp = this.emi - ( (p * r) / (100 * 12) );
+      const cp = this.emi - ((p * r) / (100 * 12));
       const fcp = parseFloat(cp.toFixed(2));
 
       pp = (cp * 100 / P);
@@ -105,10 +105,14 @@ export class EmiPage implements OnInit {
 
   getSettings() {
     this.storageService.getLocation().code.then(val => {
-      this.currencyCode = val;
+      if (val) {
+        this.currencyCode = val;
+      }
     });
     this.storageService.getLocation().symbol.then(val => {
-      this.currencySymbol = val;
+      if (val) {
+        this.currencySymbol = val;
+      }
     });
   }
 
