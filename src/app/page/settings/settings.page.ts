@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from 'src/app/services/storage.service';
 import { Platform } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-settings',
@@ -21,6 +22,7 @@ export class SettingsPage implements OnInit {
     private formBuilder: FormBuilder,
     private storageService: StorageService,
     private platform: Platform,
+    private toast: ToastService,
     ) {
       this.platform.ready().then(() => {
         this.getSettings();
@@ -40,6 +42,10 @@ export class SettingsPage implements OnInit {
     });
 
     this.storageService.setCurrency(currencyVal);
+    this.currencySymbol = this.settingsForm.value.currency; // to disable form for same value
+
+    // toast
+    this.toast.presentToast('Settings Saved!', 2000);
   }
 
   getSettings() {
