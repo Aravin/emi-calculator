@@ -24,7 +24,7 @@
       </ion-item>
     
       <!-- Submit Button -->
-      <ion-button [disabled]="settingsForm.invalid || currencySymbol === settingsForm.value.currency" type="submit" color="danger" expand="full">Save Settings</ion-button>
+      <ion-button [disabled]="settingsForm.invalid || !settingsForm.touched" type="submit" color="danger" expand="full">Save Settings</ion-button>
     </form>
   </ion-card-content>
 </ion-content>

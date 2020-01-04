@@ -19,6 +19,11 @@ export class Tab2Page implements OnInit {
   currencyCode = 'INR';
   currencySymbol = '₹';
 
+  // year / month
+  tenure = 'Years';
+  tenureChecked = false;
+  monthToYear = 12;
+
   constructor(
     private formBuilder: FormBuilder,
     private storageService: StorageService,
@@ -45,7 +50,7 @@ export class Tab2Page implements OnInit {
     const P: number = this.emiForm.value.loanAmount;
     const r: number = this.emiForm.value.interest;
 
-    this.totalInterest = parseFloat((P * r / 100).toFixed(2));
+    this.totalInterest = parseFloat((P * (r / this.monthToYear) / 100).toFixed(2));
 
     this.showDetails = true;
   }
@@ -61,6 +66,18 @@ export class Tab2Page implements OnInit {
         this.currencySymbol = val;
       }
     });
+  }
+
+  toggleTenure() {
+    if (this.tenureChecked) {
+      this.tenureChecked = false;
+      this.tenure = 'Years';
+      this.monthToYear = 12;
+    } else {
+      this.tenureChecked = true;
+      this.tenure = 'Months';
+      this.monthToYear = 1;
+    }
   }
 
 }

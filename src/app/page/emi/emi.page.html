@@ -20,25 +20,49 @@
         <!-- Loan Amount -->
         <ion-item>
           <ion-label position="floating">Loan Amount* ({{ currencySymbol }})</ion-label>
-          <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount" placeholder="0 - 999999999"></ion-input>
+          <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount"
+            placeholder="0 - 999999999"></ion-input>
         </ion-item>
 
         <!-- Rate of Interest -->
         <ion-item>
           <ion-label position="floating">Interest Rate* (in %)</ion-label>
-          <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="interest" placeholder="1-100">
+          <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="interest"
+            placeholder="1-100">
           </ion-input>
         </ion-item>
 
         <!-- No. of Year -->
-        <ion-item>
-          <ion-label position="floating">Loan Tenure* (in Years) </ion-label>
-          <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="tenure" placeholder="1-100">
-          </ion-input>
-        </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="floating">Tenure* (in Year)</ion-label>
+                <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="tenure"
+                  placeholder="1-100">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <!-- <ion-col size="3">
+              <ion-label position="floating"> {{ tenure }}</ion-label>
+              <ion-toggle color="primary" value="tenureChecked" (click)="toggleTenure()"></ion-toggle>
+            </ion-col> -->
+          </ion-row>
+        </ion-grid>
 
         <!-- Submit Button -->
-        <ion-button [disabled]="emiForm.invalid" type="submit" color="primary" expand="full">Calculate</ion-button>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button [disabled]="emiForm.invalid" type="submit" color="primary" expand="full">Calculate
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button [disabled]="!emiForm.touched" color="light" expand="full" (click)="emiForm.reset()">Clear
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </form>
 
     </ion-card-content>
@@ -52,13 +76,14 @@
       <ion-card-content>
         <!-- EMI Calculator -->
         <ion-chip color="primary">
-        <ion-label class="text-highlight">Total Monthly EMI is {{ emi | currency: currencyCode}}</ion-label>
+          <ion-label class="text-highlight">Total Monthly EMI is {{ emi | currency: currencyCode}}</ion-label>
         </ion-chip>
         <ion-chip color="dark">
           <ion-label class="text-highlight">Total EMI is {{ totalEmi | currency: currencyCode }}</ion-label>
         </ion-chip>
         <ion-chip color="danger">
-          <ion-label class="text-highlight">Total Interest is {{ this.totalInterest | currency: currencyCode }}</ion-label>
+          <ion-label class="text-highlight">Total Interest is {{ this.totalInterest | currency: currencyCode }}
+          </ion-label>
         </ion-chip>
 
       </ion-card-content>

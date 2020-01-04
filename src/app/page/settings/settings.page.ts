@@ -42,8 +42,7 @@ export class SettingsPage implements OnInit {
     });
 
     this.storageService.setCurrency(currencyVal);
-    this.currencySymbol = this.settingsForm.value.currency; // to disable form for same value
-
+    // this.currencySymbol = this.settingsForm.value.currency; // to disable form for same value
     // toast
     this.toast.presentToast('Settings Saved!', 2000);
   }

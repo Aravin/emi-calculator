@@ -28,6 +28,11 @@ export class EmiPage implements OnInit {
   currencyCode = 'INR';
   currencySymbol = '₹';
 
+  // year / month
+  tenure = 'Years';
+  tenureChecked = false;
+  // monthToYear = 12;
+
   emiSchedule: EmiSchedule[] = [];
 
   constructor(
@@ -114,6 +119,18 @@ export class EmiPage implements OnInit {
         this.currencySymbol = val;
       }
     });
+  }
+
+  toggleTenure() {
+    if (this.tenureChecked) {
+      this.tenureChecked = false;
+      this.tenure = 'Years';
+      // this.monthToYear = 12;
+    } else {
+      this.tenureChecked = true;
+      this.tenure = 'Months';
+      // this.monthToYear = 1;
+    }
   }
 
 }
