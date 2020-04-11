@@ -4,9 +4,13 @@
     "outDir": "./out-tsc/app",
     "types": []
   },
+  "angularCompilerOptions": {
+    "enableIvy": true
+  },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "src/zone-flags.ts"
   ],
   "include": [
     "src/**/*.d.ts"
