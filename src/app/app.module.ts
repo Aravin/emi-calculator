@@ -14,12 +14,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { IonicStorageModule } from '@ionic/storage';
-
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ChartsModule,
+  ],
   providers: [
     StatusBar,
     SplashScreen,

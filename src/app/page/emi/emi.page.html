@@ -20,8 +20,7 @@
         <!-- Loan Amount -->
         <ion-item>
           <ion-label position="floating">Loan Amount* ({{ currencySymbol }})</ion-label>
-          <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount"
-            placeholder="0 - 999999999"></ion-input>
+          <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount" ></ion-input>
         </ion-item>
 
         <!-- Rate of Interest -->
@@ -85,6 +84,18 @@
           <ion-label class="text-highlight">Total Interest is {{ this.totalInterest | currency: currencyCode }}
           </ion-label>
         </ion-chip>
+
+        <br><br>
+
+        <div style="display: block;" *ngIf="showDetails">
+          <canvas baseChart 
+            [datasets]="chartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType"
+            [colors]="doughnutColors"
+            >
+          </canvas>
+        </div>
 
       </ion-card-content>
     </ion-card>

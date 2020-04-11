@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from 'src/app/services/storage.service';
 import { Platform } from '@ionic/angular';
+import { ChartType, ChartColor, ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 interface EmiSchedule {
   startingBalance: number;
@@ -35,6 +37,13 @@ export class EmiPage implements OnInit {
 
   emiSchedule: EmiSchedule[] = [];
 
+  // charts
+  // Doughnut
+  doughnutChartLabels: Label[] = ['Principal', 'Interest'];
+  doughnutChartType: ChartType = 'doughnut';
+  doughnutColors: ChartColor[] = [ ['#10dc60'], ['#f04141'] ];
+  chartData: ChartDataSets[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private storageService: StorageService,
@@ -64,6 +73,7 @@ export class EmiPage implements OnInit {
     }
 
     this.emiSchedule = [];
+    this.chartData = [];
 
     const P: number = this.emiForm.value.loanAmount;
     let p = P;
@@ -104,6 +114,11 @@ export class EmiPage implements OnInit {
 
     this.totalEmi = parseFloat((this.emi * yn).toFixed(2));
     this.totalInterest = parseFloat((this.totalEmi - P).toFixed(2));
+
+
+    this.chartData.push(
+      { data: [P, this.totalInterest], backgroundColor: ['#28e070', '#f25454'], hoverBackgroundColor:  ['#10dc60', '#f04141']},
+    );
 
     this.showDetails = true;
   }
