@@ -20,7 +20,7 @@ export class AppComponent {
     {
       title: 'SI Calculation',
       url: '/tabs/tab2',
-      icon: 'lock'
+      icon: 'shield-checkmark-outline'
     },
     {
       title: 'Settings',
@@ -29,7 +29,7 @@ export class AppComponent {
     },
     {
       title: 'About Us',
-      url: '/tabs/tab3',
+      url: '/about',
       icon: 'information'
     }
   ];

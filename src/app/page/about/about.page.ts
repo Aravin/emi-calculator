@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'about.page.html',
-  styleUrls: ['about.page.scss']
+  selector: 'app-about',
+  templateUrl: './about.page.html',
+  styleUrls: ['./about.page.scss'],
 })
+export class AboutPage implements OnInit {
 
-export class Tab3Page {
+  constructor() { }
 
-  constructor() {}
+  ngOnInit() {
+  }
 
 }
