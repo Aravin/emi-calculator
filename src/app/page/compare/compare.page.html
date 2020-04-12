@@ -1,0 +1,192 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Compare Loan
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="compareForm" (ngSubmit)="compareLoan()">
+
+          <!-- loan 1 -->
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>
+                Loan 1
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+
+              <!-- Loan Amount -->
+              <ion-item>
+                <ion-label position="floating">Loan Amount* </ion-label>
+                <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount"
+                  placeholder="1-999999999"></ion-input>
+              </ion-item>
+
+              <!-- Rate of Interest -->
+              <ion-item>
+                <ion-label position="floating">Interest Rate* (in %)</ion-label>
+                <ion-input type="number" inputmode="numeric" clearInput="true" required="true"
+                  formControlName="interest" placeholder="1-100">
+                </ion-input>
+              </ion-item>
+
+              <!-- No. of Year -->
+              <!-- <ion-grid>
+                <ion-row>
+                  <ion-col size="12"> -->
+              <ion-item>
+                <ion-label position="floating">Tenure* (in Year)</ion-label>
+                <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="tenure"
+                  placeholder="1-100">
+                </ion-input>
+              </ion-item>
+              <!-- </ion-col>
+                </ion-row>
+              </ion-grid> -->
+
+            </ion-card-content>
+          </ion-card>
+
+          <!-- loan 2 -->
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>
+                Loan 2
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+
+              <!-- Loan Amount -->
+              <ion-item>
+                <ion-label position="floating">Loan Amount* </ion-label>
+                <ion-input type="number" inputmode="numeric" clearInput="true" formControlName="loanAmount2"
+                  placeholder="1-999999999"></ion-input>
+              </ion-item>
+
+              <!-- Rate of Interest -->
+              <ion-item>
+                <ion-label position="floating">Interest Rate* (in %)</ion-label>
+                <ion-input type="number" inputmode="numeric" clearInput="true" required="true"
+                  formControlName="interest2" placeholder="1-100">
+                </ion-input>
+              </ion-item>
+
+              <!-- No. of Year -->
+              <!-- <ion-grid>
+                <ion-row>
+                  <ion-col size="12"> -->
+              <ion-item>
+                <ion-label position="floating">Tenure* (in Year)</ion-label>
+                <ion-input type="number" inputmode="numeric" clearInput="true" required="true" formControlName="tenure2"
+                  placeholder="1-100">
+                </ion-input>
+              </ion-item>
+              <!-- </ion-col>
+                </ion-row>
+              </ion-grid> -->
+
+            </ion-card-content>
+          </ion-card>
+
+          <!-- Submit Button -->
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button [disabled]="compareForm.invalid" type="submit" color="warning" expand="full">Calculate
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button [disabled]="!compareForm.touched" color="light" expand="full" (click)="compareForm.reset()">
+                  Clear
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </form>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="totalEmi1">
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>
+              Loan Summary
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <!-- Notes in a List -->
+            <ion-list>
+              <ion-item>
+                <ion-label>Interest on Loan 1</ion-label>
+                <ion-chip>
+                  <ion-label>{{ totalInterest1 }}</ion-label>
+                </ion-chip>
+              </ion-item>
+              <ion-item>
+                <ion-label>Interest on Loan 2</ion-label>
+                <ion-chip>
+                  <ion-label>{{ totalInterest2 }}</ion-label>
+                </ion-chip>
+              </ion-item>
+              <ion-item>
+                <ion-label>Total Payable on Loan 1</ion-label>
+                <ion-chip>
+                  <ion-label>{{ totalEmi1 }}</ion-label>
+                </ion-chip>
+              </ion-item>
+              <ion-item>
+                <ion-label>Total Payable on Loan 2</ion-label>
+                <ion-chip>
+                  <ion-label>{{ totalEmi2 }}</ion-label>
+                </ion-chip>
+              </ion-item>
+              <ion-item *ngIf="minLoan !== -1">
+                <ion-label>You save {{ diffAmount }} on </ion-label>
+                <ion-chip color="success">
+                  <ion-label>Loan {{ minLoan + 1 }}</ion-label>
+                </ion-chip>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- chart -->
+    <ion-row *ngIf="totalEmi1">
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>
+              Graph
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <div style="display: block;" >
+              <canvas baseChart 
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

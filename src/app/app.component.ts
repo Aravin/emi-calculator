@@ -15,7 +15,7 @@ export class AppComponent {
     {
       title: 'EMI Calculation',
       url: '/tabs/tab1',
-      icon: 'calculator'
+      icon: 'calculator-outline'
     },
     {
       title: 'SI Calculation',
@@ -23,14 +23,19 @@ export class AppComponent {
       icon: 'shield-checkmark-outline'
     },
     {
+      title: 'Compare Loan',
+      url: '/compare',
+      icon: 'podium-outline'
+    },
+    {
       title: 'Settings',
       url: '/settings',
-      icon: 'settings'
+      icon: 'settings-outline'
     },
     {
       title: 'About Us',
       url: '/about',
-      icon: 'information'
+      icon: 'information-circle-outline'
     }
   ];
 
