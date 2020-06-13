@@ -16,6 +16,14 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item (click)="gotoPlayStore()">
+              <ion-icon slot="start" [name]="'star-half-outline'"></ion-icon>
+              <ion-label>
+                Rate Us
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>

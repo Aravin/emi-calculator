@@ -36,7 +36,7 @@ export class AppComponent {
       title: 'About Us',
       url: '/about',
       icon: 'information-circle-outline'
-    }
+    },
   ];
 
   constructor(
@@ -52,5 +52,10 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+
+  gotoPlayStore() {
+      window.open('https://play.google.com/store/apps/details?id=io.epix.emi', '_blank');
   }
 }
