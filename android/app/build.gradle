@@ -6,13 +6,13 @@ android {
         applicationId "io.epix.emi"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 7
-        versionName "2.4"
+        versionCode 10
+        versionName "3.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
