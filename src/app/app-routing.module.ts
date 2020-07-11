@@ -18,7 +18,6 @@ const routes: Routes = [
     path: 'compare',
     loadChildren: () => import('./page/compare/compare.module').then( m => m.ComparePageModule)
   },
-
 ];
 @NgModule({
   imports: [

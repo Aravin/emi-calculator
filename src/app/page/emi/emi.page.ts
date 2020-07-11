@@ -4,15 +4,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { Platform } from '@ionic/angular';
 import { ChartType, ChartColor, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-
-interface EmiSchedule {
-  startingBalance: number;
-  principal: number;
-  interest: number;
-  emi: string;
-  endingBalance: string;
-  percentagePaid: number;
-}
+import { EmiSchedule } from './EmiSchedule';
 
 @Component({
   selector: 'app-home',

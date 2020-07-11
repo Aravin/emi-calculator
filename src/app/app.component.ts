@@ -18,6 +18,11 @@ export class AppComponent {
       icon: 'calculator-outline'
     },
     {
+      title: 'PRO EMI Calculation',
+      url: '/tabs/pro',
+      icon: 'calculator-outline'
+    },
+    {
       title: 'SI Calculation',
       url: '/tabs/tab2',
       icon: 'shield-checkmark-outline'

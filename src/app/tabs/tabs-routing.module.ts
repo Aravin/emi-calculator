@@ -18,6 +18,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'pro',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../page/pro/pro.module').then(m => m.ProPageModule)
+          }
+        ]
+      },
+      {
         path: 'tab2',
         children: [
           {
